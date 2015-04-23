@@ -19,15 +19,14 @@ npm install --save-dev webpack-compile-templates
 myTemplates.html
 
 Use the ID attribute to identify the template from your JS source.
-Use data-variable-name to change the variable name that is used in the underscore template. obj is the default
 
 ```html
 <script type="text/template" id="template1">
-	<h2><%- obj.title %></h2>
+	<h2><%- title %></h2>
 </script>
 
-<script type="text/template" id="template2" data-variable-name="data">
-	<li><%- data.name %> <<%- data.email %>></li>
+<script type="text/template" id="template2">
+	<li><%- name %> <<%- email %>></li>
 </script>
 ```
 
@@ -71,8 +70,8 @@ The advantage of this transform over other transforms or plugins is that the tem
         var $tempalte2 = $('#template2');
         factory(
             _module,
-            _.template($template1.html(), null, {variable: $template.attr('data-variable-name')),
-            _.template($template2.html(), null, {variable: $template.attr('data-variable-name'))
+            _.template($template1.html(), null),
+            _.template($template2.html(), null)
         );
     }
 }(window || global, function (module, template1, template2) {
